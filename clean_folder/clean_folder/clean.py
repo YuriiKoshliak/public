@@ -16,7 +16,11 @@ for c, t in zip(CYRILLIC_SYMBOLS, TRANSLATION):
     
     TRANS[ord(c)] = t
     TRANS[ord(c.upper())] = t.upper()
-    
+
+folders_to_create = ["images", "documents", 'audio', 'video', 'archives', 'other']
+
+main_folder_path = Path(sys.argv[1])
+
 images = ['.JPEG', '.PNG', '.JPG', '.SVG']
 documents = ['.DOC', '.DOCX', '.TXT', '.PDF', '.XLSX', '.PPTX']
 audio = ['.MP3', '.OGG', '.WAV', '.AMR']
@@ -135,11 +139,12 @@ def monster_sort(path):
             else:
                 move_rename_file(element)
                 
-if __name__ == "__main__":
 
+
+def main_entry():
     if len(sys.argv) == 2:
-        main_folder_path = Path(sys.argv[1])
-        folders_to_create = ["images", "documents", 'audio', 'video', 'archives', 'other']
+        
+        
         for folder_name in folders_to_create:
             try:
                 (main_folder_path / folder_name).mkdir()
@@ -166,3 +171,11 @@ if __name__ == "__main__":
               архіви: {found_archives} \n''')
     else:
         print("Потрібно вказати шлях до папки (лише один аргумент)")
+        
+        
+
+if __name__ == "__main__":
+    main_entry()
+
+
+
